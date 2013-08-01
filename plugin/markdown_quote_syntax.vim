@@ -91,7 +91,7 @@ function! s:enable_quote_syntax()
 
   for [filetype, option] in items(filetype_dic)
     call markdown_quote_syntax#include_other_syntax(filetype)
-    call markdown_quote_syntax#enable_quote_highlight(filetype, option.start, option.end)
+    call markdown_quote_syntax#enable_quote_highlight(filetype, option.start)
   endfor
 endfunction
 
