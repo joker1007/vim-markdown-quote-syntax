@@ -1,0 +1,31 @@
+# vim-markdown-quote-syntax
+
+Enable highlight markdown code block with appropriate syntax.
+
+## Screenshot
+
+![screenshop.png](screenshot.png)
+
+## Option
+
+```vim
+" Add syntax rule
+let g:markdown_quote_syntax_filetypes = {
+        \ "coffee" : {
+        \   "start" : "^\\s*```coffee$",
+        \   "end"   : "^\\s*```\\ze\\s*$"
+        \},
+        \ "mustache" : {
+        \   "start" : "^\\s*```mustache$",
+        \   "end"   : "^\\s*```\\ze\\s*$"
+        \},
+        \ "haml" : {
+        \   "start" : "^\\s*```haml$",
+        \   "end"   : "^\\s*```\\ze\\s*$"
+        \},
+  \}
+
+" 'start' and 'end' is vim regular expression.
+" need to care backslash.
+```
+
