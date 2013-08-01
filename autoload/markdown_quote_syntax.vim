@@ -57,13 +57,16 @@ function! markdown_quote_syntax#include_other_syntax(filetype)
   return group
 endfunction
 
-function! markdown_quote_syntax#enable_quote_highlight(filetype, start, end)
+function! markdown_quote_syntax#enable_quote_highlight(filetype, start)
   let group = markdown_quote_syntax#syntax_group(a:filetype)
   let region = markdown_quote_syntax#syntax_region(a:filetype)
 
+  let regexp_start = "^\\s*```".a:start."$"
+  let regexp_end = "^\\s*```\\ze\\s*$"
+
   execute 'syntax region '.region.'
   \ matchgroup=markdownCodeDelimiter
-  \ start="'.a:start.'" end="'.a:end.'"
+  \ start="'.regexp_start.'" end="'.regexp_end.'"
   \ keepend contains=@'.group
 endfunction
 

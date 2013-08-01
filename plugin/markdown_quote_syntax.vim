@@ -33,64 +33,49 @@ set cpo&vim
 if !exists('g:markdown_quote_syntax_defaults')
   let g:markdown_quote_syntax_defaults = {
         \ "vim" : {
-        \   "start" : "^\\s*```vim$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "vim",
         \},
         \ "diff" : {
-        \   "start" : "^\\s*```diff$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "diff",
         \},
         \ "c" : {
-        \   "start" : "^\\s*```c$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "c",
         \},
         \ "cpp" : {
-        \   "start" : "^\\s*```cpp$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "cpp",
         \},
         \ "java" : {
-        \   "start" : "^\\s*```java$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "java",
         \},
         \ "ruby" : {
-        \   "start" : "^\\s*```\\%(ruby\\|rb\\)$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "\\%(ruby\\|rb\\)",
         \},
         \ "haskell" : {
-        \   "start" : "^\\s*```\\%(haskell\\|hs\\)$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "\\%(haskell\\|hs\\)",
         \},
         \ "python" : {
-        \   "start" : "^\\s*```\\%(python\\|py\\)$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "\\%(python\\|py\\)",
         \},
         \ "perl" : {
-        \   "start" : "^\\s*```\\%(perl\\|pl\\)$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "\\%(perl\\|pl\\)",
         \},
         \ "javascript" : {
-        \   "start" : "^\\s*```\\%(javascript\\|js\\)$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "\\%(javascript\\|js\\)",
         \},
         \ "html" : {
-        \   "start" : "^\\s*```html$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "html",
         \},
         \ "sh" : {
-        \   "start" : "^\\s*```sh$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "sh",
         \},
         \ "sql" : {
-        \   "start" : "^\\s*```sql$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "sql",
         \},
         \ "ocaml" : {
-        \   "start" : "^\\s*```ocaml$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "ocaml",
         \},
         \ "erlang" : {
-        \   "start" : "^\\s*```erlang$",
-        \   "end"   : "^\\s*```\\ze\\s*$"
+        \   "start" : "erlang",
         \},
   \}
 endif
