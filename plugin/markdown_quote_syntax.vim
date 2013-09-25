@@ -97,7 +97,7 @@ endfunction
 
 augroup markdown_quote_syntax
   autocmd!
-  autocmd Syntax markdown call s:enable_quote_syntax()
+  autocmd Syntax markdown,mkd call s:enable_quote_syntax()
 augroup END
 
 let g:loaded_markdown_quote_syntax = 1
