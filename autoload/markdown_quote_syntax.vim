@@ -61,13 +61,23 @@ function! markdown_quote_syntax#enable_quote_highlight(filetype, start)
   let group = markdown_quote_syntax#syntax_group(a:filetype)
   let region = markdown_quote_syntax#syntax_region(a:filetype)
 
-  let regexp_start = "^\\s*```".a:start."$"
+  let regexp_start = "^\\s*```".a:start."\\(\\s*:.*\\)\\?$"
   let regexp_end = "^\\s*```\\ze\\s*$"
 
   execute 'syntax region '.region.'
   \ matchgroup=markdownCodeDelimiter
   \ start="'.regexp_start.'" end="'.regexp_end.'"
   \ keepend contains=@'.group
+endfunction
+
+function! markdown_quote_syntax#enable_quote_syntax()
+  let defaults = deepcopy(g:markdown_quote_syntax_defaults)
+  let filetype_dic = extend(defaults, g:markdown_quote_syntax_filetypes)
+
+  for [filetype, option] in items(filetype_dic)
+    call markdown_quote_syntax#include_other_syntax(filetype)
+    call markdown_quote_syntax#enable_quote_highlight(filetype, option.start)
+  endfor
 endfunction
 
 let &cpo = s:save_cpo

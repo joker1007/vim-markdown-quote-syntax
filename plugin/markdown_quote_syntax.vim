@@ -84,20 +84,9 @@ if !exists('g:markdown_quote_syntax_filetypes')
   let g:markdown_quote_syntax_filetypes = {}
 endif
 
-function! s:enable_quote_syntax()
-  let defaults = deepcopy(g:markdown_quote_syntax_defaults)
-  let filetype_dic = extend(defaults, g:markdown_quote_syntax_filetypes)
-
-
-  for [filetype, option] in items(filetype_dic)
-    call markdown_quote_syntax#include_other_syntax(filetype)
-    call markdown_quote_syntax#enable_quote_highlight(filetype, option.start)
-  endfor
-endfunction
-
 augroup markdown_quote_syntax
   autocmd!
-  autocmd Syntax markdown,mkd call s:enable_quote_syntax()
+  autocmd Syntax markdown,mkd call markdown_quote_syntax#enable_quote_syntax()
 augroup END
 
 let g:loaded_markdown_quote_syntax = 1
