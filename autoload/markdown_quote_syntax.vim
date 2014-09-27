@@ -61,8 +61,8 @@ function! markdown_quote_syntax#enable_quote_highlight(filetype, start)
   let group = markdown_quote_syntax#syntax_group(a:filetype)
   let region = markdown_quote_syntax#syntax_region(a:filetype)
 
-  let regexp_start = "^\\s*```".a:start."\\(\\s*:.*\\)\\?$"
-  let regexp_end = "^\\s*```\\ze\\s*$"
+  let regexp_start = "^\\s*\\(>\\s*\\)\\?```".a:start."\\(\\s*:.*\\)\\?$"
+  let regexp_end = "^\\s*\\(>\\s*\\)\\?```\\ze\\s*$"
 
   execute 'syntax region '.region.'
   \ matchgroup=markdownCodeDelimiter
