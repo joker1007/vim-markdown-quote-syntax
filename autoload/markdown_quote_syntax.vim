@@ -78,6 +78,8 @@ function! markdown_quote_syntax#enable_quote_syntax()
     call markdown_quote_syntax#include_other_syntax(filetype)
     call markdown_quote_syntax#enable_quote_highlight(filetype, option.start)
   endfor
+  " Fix spell check (needed if such java is included)
+  syntax spell toplevel
 endfunction
 
 let &cpo = s:save_cpo
