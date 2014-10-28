@@ -27,5 +27,22 @@ let g:markdown_quote_syntax_filetypes = {
 
 " 'start' and 'end' is vim regular expression.
 " need to care backslash.
+
+" Add code blocks
+let g:markdown_quote_syntax_codeblocks = {
+        \["^\\s*{% *highlight \\+", "\\( .*%\\|%\\)}",
+          \"^\\s*{% *endhighlight\\( .*%\\|%\\)}"],
+  \}
+
+" Each codeblock is defined as:
+"
+"    'codeblock[0].filetype.codeblock[1]<code lines>codeblock[2]'
+"
+" Above example is for the liquid highlight tag. (It is already included by default.)
+"    {% highlight vim %}
+"    any codes
+"    ...
+"    {% endhighlight %}
+
 ```
 
