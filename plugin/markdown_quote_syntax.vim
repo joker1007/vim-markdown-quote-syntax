@@ -104,9 +104,21 @@ if !exists('g:markdown_quote_syntax_codeblocks')
   let g:markdown_quote_syntax_codeblocks = []
 endif
 
+if !exists('g:markdown_quote_syntax_on_filetypes_default')
+  let g:markdown_quote_syntax_on_filetypes_default = ['markdown', 'mkd']
+endif
+
+if !exists('g:markdown_quote_syntax_on_filetypes')
+  let g:markdown_quote_syntax_on_filetypes = []
+endif
+
 augroup markdown_quote_syntax
   autocmd!
-  autocmd Syntax markdown,mkd call markdown_quote_syntax#enable_quote_syntax()
+  let on_filetypes = deepcopy(g:markdown_quote_syntax_on_filetypes_default)
+  let on_filetypes = extend(on_filetypes, g:markdown_quote_syntax_on_filetypes)
+  for ft in on_filetypes
+    execute "autocmd Syntax" ft "call markdown_quote_syntax#enable_quote_syntax()"
+  endfor
 augroup END
 
 let g:loaded_markdown_quote_syntax = 1

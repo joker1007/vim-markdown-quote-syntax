@@ -44,5 +44,8 @@ let g:markdown_quote_syntax_codeblocks = {
 "    ...
 "    {% endhighlight %}
 
+" Add other file types in which quote syntax should be on.
+let g:markdown_quote_syntax_on_filetypes = ['text']
+
 ```
 
