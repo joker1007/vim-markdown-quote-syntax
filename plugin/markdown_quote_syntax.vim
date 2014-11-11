@@ -84,9 +84,41 @@ if !exists('g:markdown_quote_syntax_filetypes')
   let g:markdown_quote_syntax_filetypes = {}
 endif
 
+if !exists('g:markdown_quote_syntax_codeblocks_default')
+  " Triple backtick, Triple wave, Liquid highlight,
+  " Octopress codeblock (w/ and w/o lang:)
+  "
+  " Each codeblock is defined as:
+  "  'codeblock[0].filetype.codeblock[1]<code lines>codeblock[2]'
+  let g:markdown_quote_syntax_codeblocks_default = [
+    \["^\\s*\\(>\\s*\\)\\?```", "\\(\\s*:.*\\)\\?$",
+      \"^\\s*\\(>\\s*\\)\\?```\\ze\\s*$"],
+    \["^\\s*\\~\\{3,}\.*\\.", ".*$","^\\s*\\~\\{3,}\\ze\\s*$"],
+    \["^\\s*{% *highlight \\+", "\\( .*%\\|%\\)}", "^\\s*{% *endhighlight\\( .*%\\|%\\)}"],
+    \["^\\s*{% *codeblock \\( *\\|.* \\)lang:", "\\( .*%\\|%\\)}", "^\\s*{% *endcodeblock\\( .*%\\|%\\)}"],
+    \["^\\s*{% *codeblock \\(.*lang:.*\\)\\@!.*\\.", "\\( *%\\| .*%\\)}", "^\\s*{% *endcodeblock\\( .*%\\|%\\)}"],
+  \]
+endif
+
+if !exists('g:markdown_quote_syntax_codeblocks')
+  let g:markdown_quote_syntax_codeblocks = []
+endif
+
+if !exists('g:markdown_quote_syntax_on_filetypes_default')
+  let g:markdown_quote_syntax_on_filetypes_default = ['markdown', 'mkd']
+endif
+
+if !exists('g:markdown_quote_syntax_on_filetypes')
+  let g:markdown_quote_syntax_on_filetypes = []
+endif
+
 augroup markdown_quote_syntax
   autocmd!
-  autocmd Syntax markdown,mkd call markdown_quote_syntax#enable_quote_syntax()
+  let on_filetypes = deepcopy(g:markdown_quote_syntax_on_filetypes_default)
+  let on_filetypes = extend(on_filetypes, g:markdown_quote_syntax_on_filetypes)
+  for ft in on_filetypes
+    execute "autocmd Syntax" ft "call markdown_quote_syntax#enable_quote_syntax()"
+  endfor
 augroup END
 
 let g:loaded_markdown_quote_syntax = 1

@@ -57,27 +57,34 @@ function! markdown_quote_syntax#include_other_syntax(filetype)
   return group
 endfunction
 
-function! markdown_quote_syntax#enable_quote_highlight(filetype, start)
+function! markdown_quote_syntax#apply_highlight(filetype,group,region,codeblock)
+  execute 'syntax region '.a:region.'
+  \ matchgroup=markdownCodeDelimiter
+  \ start="'.a:codeblock[0].a:filetype.a:codeblock[1].'" end="'.a:codeblock[2].'"
+  \ keepend contains=@'.a:group
+endfunction
+
+function! markdown_quote_syntax#enable_quote_highlight(filetype, start, codeblocks)
   let group = markdown_quote_syntax#syntax_group(a:filetype)
   let region = markdown_quote_syntax#syntax_region(a:filetype)
 
-  let regexp_start = "^\\s*\\(>\\s*\\)\\?```".a:start."\\(\\s*:.*\\)\\?$"
-  let regexp_end = "^\\s*\\(>\\s*\\)\\?```\\ze\\s*$"
-
-  execute 'syntax region '.region.'
-  \ matchgroup=markdownCodeDelimiter
-  \ start="'.regexp_start.'" end="'.regexp_end.'"
-  \ keepend contains=@'.group
+  for codeblock in a:codeblocks
+    call markdown_quote_syntax#apply_highlight(a:filetype,group,region,codeblock)
+  endfor
 endfunction
 
 function! markdown_quote_syntax#enable_quote_syntax()
   let defaults = deepcopy(g:markdown_quote_syntax_defaults)
   let filetype_dic = extend(defaults, g:markdown_quote_syntax_filetypes)
+  let codeblocks_default = deepcopy(g:markdown_quote_syntax_codeblocks_default)
+  let codeblocks = extend(codeblocks_default, g:markdown_quote_syntax_codeblocks)
 
   for [filetype, option] in items(filetype_dic)
     call markdown_quote_syntax#include_other_syntax(filetype)
-    call markdown_quote_syntax#enable_quote_highlight(filetype, option.start)
+    call markdown_quote_syntax#enable_quote_highlight(filetype, option.start, codeblocks)
   endfor
+  " Fix spell check (needed if such java is included)
+  syntax spell toplevel
 endfunction
 
 let &cpo = s:save_cpo
