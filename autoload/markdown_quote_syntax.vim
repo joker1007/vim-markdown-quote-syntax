@@ -69,7 +69,7 @@ function! markdown_quote_syntax#enable_quote_highlight(filetype, start, codebloc
   let region = markdown_quote_syntax#syntax_region(a:filetype)
 
   for codeblock in a:codeblocks
-    call markdown_quote_syntax#apply_highlight(a:filetype,group,region,codeblock)
+    call markdown_quote_syntax#apply_highlight(a:start,group,region,codeblock)
   endfor
 endfunction
 
