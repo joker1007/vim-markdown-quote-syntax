@@ -1,3 +1,5 @@
+**This project is deprecated. Please use [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) and colorscheme supporting treesitter**
+
 # vim-markdown-quote-syntax
 
 Enable highlight markdown code block with appropriate syntax.
